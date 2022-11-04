@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/expedit/static/css/main.7acaea2f.css",
+    "main.js": "/expedit/static/js/main.07d3183d.js",
+    "index.html": "/expedit/index.html",
+    "main.7acaea2f.css.map": "/expedit/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/expedit/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
