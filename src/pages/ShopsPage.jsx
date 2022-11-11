@@ -14,14 +14,11 @@ const ShopsPage = () => {
 
   useEffect(() => {
     const fetchShops = async () => {
-      setState(
-        {
-          ...state,
-          loading: true,
-          error: null,
-        },
-        [state]
-      );
+      setState({
+        ...state,
+        loading: true,
+        error: null,
+      });
 
       try {
         const res = await getShops();
@@ -29,6 +26,9 @@ const ShopsPage = () => {
           return { ...prevState, items: [...prevState.items, ...res] };
         });
       } catch (error) {
+        // setState(prevState => {
+        //   return { ...prevState, error };
+        // });
         setState({
           ...state,
           error,
@@ -42,6 +42,7 @@ const ShopsPage = () => {
     };
 
     fetchShops();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
