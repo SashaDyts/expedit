@@ -81,21 +81,29 @@ export default ShopAddForm;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+
+  width: 350px;
+
+  margin: 0 auto;
 `;
 
 const Label = styled.label`
-  /* margin-bottom: 5px; */
+  display: flex;
+  justify-content: space-between;
   :not(:first-child) {
-    margin-top: 5px;
+    margin-top: 10px;
   }
 `;
 
 const Input = styled.input`
-  margin-left: 5px;
+  /* margin-left: 5px; */
+  font-size: 16px;
 `;
 
 const Btn = styled.button`
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-left: 35%;
 
-  width: 100px;
+  width: 150px;
+  height: 30px;
 `;
