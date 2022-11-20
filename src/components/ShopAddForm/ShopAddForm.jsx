@@ -11,7 +11,7 @@ const ShopAddForm = ({ onSubmit }) => {
     onSubmit,
   });
 
-  const { name, locality, shopOwner, notes } = state;
+  const { name, locality, shopOwner } = state;
 
   return (
     <Form onSubmit={handleSubmit}>
