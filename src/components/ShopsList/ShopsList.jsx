@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import ShopsListItem from 'components/ShopsListItem';
 
@@ -8,9 +9,9 @@ const ShopsList = ({ shops }) => {
       {shops.map(shop => {
         console.log(shop.coords);
         return (
-          <li key={shop._id}>
+          <Li key={shop._id}>
             <ShopsListItem shop={shop} />
-          </li>
+          </Li>
         );
       })}
     </ul>
@@ -18,3 +19,9 @@ const ShopsList = ({ shops }) => {
 };
 
 export default ShopsList;
+
+const Li = styled.li`
+  :not(:last-child) {
+    margin-bottom: 5px;
+  }
+`;

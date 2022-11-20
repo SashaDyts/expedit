@@ -8,6 +8,7 @@ import { Container } from 'components/App';
 
 const AddShopPage = () => {
   const { coords } = useGeoPosition();
+  console.log(coords);
   // console.log(coords);
 
   const onSubmit = async data => {

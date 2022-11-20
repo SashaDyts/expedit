@@ -59,7 +59,7 @@ const ShopAddForm = ({ onSubmit }) => {
           autoComplete="off"
         />
       </Label>
-      <Label>
+      {/* <Label>
         Замітки
         <Input
           type="text"
@@ -69,7 +69,7 @@ const ShopAddForm = ({ onSubmit }) => {
           required
           autoComplete="off"
         />
-      </Label>
+      </Label> */}
 
       <Btn type="submit">Додати магазин</Btn>
     </Form>
