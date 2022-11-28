@@ -28,15 +28,30 @@ export const App = () => {
   );
 };
 
-// const AppContainer = styled.div``;
-
 export const Container = styled.div`
-  /* width: 100%; */
-  margin: 0 auto;
+  /* margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
 
-  width: 1200px;
+  width: 1200px; */
 
-  /* background-color: #fac27e; */
+  width: 320px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // @media screen and (min-width: 480px) {
+  //   width: 320px;
+  // }
+
+  @media screen and (min-width: 768px) {
+    width: 744px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 1256px;
+  }
 `;

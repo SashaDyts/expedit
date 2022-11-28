@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ListItem } from 'components/Menu/Menu';
-import { NavItem } from 'components/Menu/Menu';
+import { ListItem } from 'components/Header/Menu/Menu';
+import { NavItem } from 'components/Header/Menu/Menu';
 
 const UserMenu = () => {
   return (

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://expeditdata.herokuapp.com/',
+  baseURL: 'https://expedit-database-production.up.railway.app/api',
 });
 
 const setToken = token => {
@@ -18,7 +18,7 @@ export const register = async credentials => {
 };
 
 export const login = async credentials => {
-  const { data } = await instance.post('/api/users/login', credentials);
+  const { data } = await instance.post('/users/login', credentials);
   setToken(data.token);
   console.log(data);
   return data;

@@ -82,28 +82,50 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
 
-  width: 350px;
+  @media screen and (min-width: 768px) {
+    /* display: block; */
+    width: 300px;
+    margin: 0 auto;
+  }
 
-  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 400px;
+  }
+
+  /* @media screen and (min-width: 1280px) {
+    width: 1256px;
+  } */
+
+  /* justify-content: space-around; */
 `;
 
 const Label = styled.label`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  :not(:first-child) {
-    margin-top: 10px;
+  align-items: center;
+
+  :not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
   }
 `;
 
 const Input = styled.input`
   /* margin-left: 5px; */
   font-size: 16px;
+
+  /* margin-top: 5px; */
+
+  @media screen and (max-width: 768px) {
+    margin-top: 5px;
+  }
 `;
 
 const Btn = styled.button`
-  margin-top: 20px;
-  margin-left: 35%;
-
-  width: 150px;
-  height: 30px;
+  width: 100px;
+  margin: 0 auto;
 `;

@@ -1,53 +1,52 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Container } from 'components/App';
 import ShopsList from 'components/ShopsList';
+import ShopSearch from 'components/ShopSearch';
 
-import { getShops } from 'api/shops';
+import { getIsLoading, getShops } from 'redux/shops/shops-selectors';
+import { fetchShops } from 'redux/shops/shops-operations';
 
 const ShopsPage = () => {
-  const [state, setState] = useState({
-    items: [],
-    loading: false,
-    error: null,
-  });
+  const [filter, setFilter] = useState('');
+
+  const shops = useSelector(getShops);
+  const isLoading = useSelector(getIsLoading);
+
+  const getFilteredShops = () => {
+    if (!filter) {
+      return shops;
+    }
+
+    const normalizedFilter = filter.toLowerCase();
+
+    return shops.filter(shop =>
+      shop.shopOwner.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchShops = async () => {
-      setState({
-        ...state,
-        loading: true,
-        error: null,
-      });
-
-      try {
-        const res = await getShops();
-        setState(prevState => {
-          return { ...prevState, items: [...prevState.items, ...res] };
-        });
-      } catch (error) {
-        // setState(prevState => {
-        //   return { ...prevState, error };
-        // });
-        setState({
-          ...state,
-          error,
-        });
-        console.log(error.response.data.message);
-      } finally {
-        setState(prevState => {
-          return { ...prevState, loading: false };
-        });
-      }
-    };
-
-    fetchShops();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+    dispatch(fetchShops());
+  }, [dispatch]);
   return (
     <Container>
-      <ShopsList shops={state.items} />
+      {isLoading && shops.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {shops.length < 1 && filter === '' ? (
+            <p>Shop list is empty</p>
+          ) : (
+            <>
+              <ShopSearch value={filter} onChange={setFilter} />
+              <ShopsList shops={getFilteredShops()} />
+            </>
+          )}
+        </>
+      )}
     </Container>
   );
 };

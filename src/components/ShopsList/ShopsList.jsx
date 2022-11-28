@@ -3,22 +3,25 @@ import styled from 'styled-components';
 
 import ShopsListItem from 'components/ShopsListItem';
 
-const ShopsList = ({ shops }) => {
+const ShopsList = ({ shops, onRemoveShop }) => {
   return (
-    <ul>
+    <List>
       {shops.map(shop => {
-        console.log(shop.coords);
         return (
           <Li key={shop._id}>
-            <ShopsListItem shop={shop} />
+            <ShopsListItem shop={shop} removeShop={onRemoveShop} />
           </Li>
         );
       })}
-    </ul>
+    </List>
   );
 };
 
 export default ShopsList;
+
+const List = styled.ul`
+  margin-top: 20px;
+`;
 
 const Li = styled.li`
   :not(:last-child) {
