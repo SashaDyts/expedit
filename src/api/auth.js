@@ -24,4 +24,11 @@ export const login = async credentials => {
   return data;
 };
 
+export const getCurrentUser = async token => {
+  setToken(token);
+  const { data } = await instance.get('/users/current');
+
+  return data;
+};
+
 export default instance;

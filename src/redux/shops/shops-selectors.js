@@ -1,6 +1,6 @@
-export const getShops = store => store.shops.items;
+export const getShops = ({ shops }) => shops.items;
 
-export const getIsLoading = store => store.shops.loading;
+export const getIsLoading = ({ shops }) => shops.loading;
 
 // export const getFilteredShops = ({ shops, filter }) => {
 //   if (!filter) {

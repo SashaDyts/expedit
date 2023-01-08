@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { login } from './auth-operations';
+import { login, fetchCurrentUser } from './auth-operations';
 
 const initialState = {
   user: {},
@@ -27,6 +27,20 @@ const authSlice = createSlice({
       store.isLogin = true;
     });
     builder.addCase(login.rejected, (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    });
+
+    builder.addCase(fetchCurrentUser.pending, store => {
+      store.loading = true;
+      store.error = null;
+    });
+    builder.addCase(fetchCurrentUser.fulfilled, (store, { payload }) => {
+      store.user = payload.user;
+      store.isLogin = true;
+      store.loading = false;
+    });
+    builder.addCase(fetchCurrentUser.rejected, (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     });

@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { isAuth } from 'redux/auth/auth-selectors';
 import UserMenu from 'components/Header/Menu/UserMenu';
 import NonUserMenu from 'components/Header/Menu/NonUserMenu';
 
 const Menu = () => {
+  const isLogin = useSelector(isAuth);
   return (
     <Nav>
       <List>
@@ -13,8 +16,7 @@ const Menu = () => {
           <NavItem to="/">Головна</NavItem>
         </ListItem>
 
-        <NonUserMenu />
-        <UserMenu />
+        {isLogin ? <UserMenu /> : <NonUserMenu />}
       </List>
     </Nav>
   );

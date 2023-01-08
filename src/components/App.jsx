@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+
+import { isLoading } from 'redux/auth/auth-selectors';
 import styled from 'styled-components';
 
 import Layout from './Layout';
@@ -10,21 +13,37 @@ import {
   HomePage,
   NotFoundPage,
 } from 'pages';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isFetching = useSelector(isLoading);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+    !isFetching && (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
 
-        <Route path="/login" element={<LoginPage />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
 
-        <Route path="/all-shops" element={<ShopsPage />} />
-        <Route path="/add-shop" element={<AddShopPage />} />
-      </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path="/all-shops" element={<ShopsPage />} />
+            <Route path="/add-shop" element={<AddShopPage />} />
+          </Route>
+        </Route>
 
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    )
   );
 };
 

@@ -19,3 +19,21 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    console.log(token);
+
+    if (token === null) {
+      return thunkAPI.rejectWithValue(5);
+    }
+
+    try {
+      const response = await api.getCurrentUser(token);
+      console.log(response);
+      return response;
+    } catch (error) {}
+  }
+);
